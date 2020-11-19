@@ -28,13 +28,13 @@ class RegisterController extends Controller
     }
 
     public function referral_Generate(){
-        $rand = Str::random(30);
+        $rand = Str::random(10);
 
         $users = User::all();;
 
         foreach($users as $user){
             while($rand == $user->referral_code){
-                $rand = Str::random(30);
+                $rand = Str::random(10);
             }
         }
 

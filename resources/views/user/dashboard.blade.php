@@ -160,7 +160,7 @@
             </tr>
             </thead>
             <tbody>
-                @if(count($info['payments']) > 0)
+            {{--     @if(count($info['payments']) > 0)
                     @foreach($info['payments'] as $payment)
                         <tr>
                             <td>{{$payment['ref']}}</td>
@@ -179,10 +179,10 @@
                     <div class="card lead text-center text-danger">
                         <span><i class="fa fa-info-circle mx-1"></i>Opps,Nothing to show!</span>
                     </div>
-                @endif
+                @endif--}}
             </tbody>
             </table>
-            @if(count($info['payments']) > 0)
+            @if(count($info['referrals']) > 0)
             <div class="text-center">
                <a href="{{route('user.payments')}}" class="btn btn-primary my-3">See All</a> 
             </div>

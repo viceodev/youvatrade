@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Plans_meta;
 use App\Models\Payments;
 use Illuminate\Support\Facades\Str;
+use App\Models\Transaction;
+use App\Models\sitePaymentOptions;
+use App\Models\UserPaymentMeta;
+use App\Models\User;
 
 
 class PaymentController extends Controller
@@ -61,6 +65,99 @@ class PaymentController extends Controller
             return redirect()->route('user.dashboard');
         }
 
+    }
+
+    public function depositPost(Request $request){
+        $request->validate([
+            'method' => 'required',
+            'amount' => 'required',
+        ]);
+
+        $wallet = sitePaymentOptions::where('wallet_type', $request->method)->get()[0];
+        
+        $ref = str_shuffle("0123456789");
+
+        $payment = Transaction::where('ref', $ref)->get();
+
+        while(count($payment) > 0 ){
+            $ref = str_shuffle("0123456789");
+        }
+
+
+        $user = new Transaction();
+        $user->user_id = auth()->user()->id;
+        $user->ref = $ref;
+        $user->type = 'deposit';
+        $user->amount = $request->amount;
+        $user->description = 'Deposit of $'.$request->amount.' from '.auth()->user()->name;
+        $user->payment_channel = $wallet['wallet_type'];
+        $user->payment_address = $wallet['wallet_address'];
+        if(auth()->user()->role == 'special'){
+            $user->status = 1;
+            $current = User::find(auth()->user()->id);
+            $current->balance = $current->balance + $request->amount;
+            $current->save();
+        }else{
+            $user->status = 2;
+        }
+        
+        $user->save();
+
+
+        return view('user.payments.depo', ['wallet' => $wallet])->with('ref', $ref);
+    }
+
+    public function withdrawPost(Request $request){
+        $request->validate([
+            'amount' => 'required',
+        ]);
+
+        if($request->amount > auth()->user()->balance && auth()->user()->role == 'user'){
+            return back()->with('error', 'Opps!, You have insufficient balance.');
+        }elseif(!isset($request->wallet) && !isset($request->wallet_address) && !isset($request->wallet_type)){
+            return back()->with('error', 'Please choose a wallet to withdraw to.');
+        }elseif(isset($request->wallet_address) && isset($request->wallet_type)){
+
+            $this->withdrawalTransact($request);
+            return back()->with('success', 'Withdrawal request sent successfully');
+
+        }elseif(isset($request->wallet)){
+
+            $wallet = UserPaymentMeta::find($request->wallet);
+            $request->wallet_type = $wallet['wallet_type'];
+            $request->wallet_address = $wallet['wallet_address'];
+            $this->withdrawalTransact($request);
+            return back()->with('success', 'Withdrawal request sent successfully');
+
+        }
+    }
+
+    public function withdrawalTransact($request){
+        $ref = str_shuffle("0123456789");
+
+        $payment = Transaction::where('ref', $ref)->get();
+
+        while(count($payment) > 0 ){
+            $ref = str_shuffle("0123456789");
+        }
+
+
+        $user = new Transaction();
+        $user->user_id = auth()->user()->id;
+        $user->ref = $ref;
+        $user->type = 'withdrawal';
+        $user->amount = $request->amount;
+        $user->description = 'Request for withdrawal of $'.$request->amount." by ".auth()->user()->name;
+        $user->payment_channel = $request->wallet_type;
+        $user->payment_address = $request->wallet_address;
+        $user->status = 2;
+        if(auth()->user()->role == 'special'){
+            $user->status = 1;
+            $current = User::find(auth()->user()->id);
+            $current->balance = $current->balance - $request->amount;
+            $current->save();
+        }
+        $user->save();
     }
 
     public function makePayment($cart){

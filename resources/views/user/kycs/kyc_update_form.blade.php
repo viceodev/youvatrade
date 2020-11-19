@@ -99,7 +99,7 @@
                     </label>
                     <div class="input-wrap">
                         <select class="input-focus form-control rounded shadow" name="gender" id="gender">
-                            <option value="null">{{__('Select Gender')}}</option>
+                            <option value="{{null}}">{{__('Select Gender')}}</option>
                             <option value="male" @if($kyc['gender'] == 'male') selected @endif>{{__('Male')}}</option>
                             <option  value="female"  @if($kyc['gender'] == 'female') selected @endif>{{__('Female')}}</option>
                             <option  value="other" @if($kyc['gender'] == 'other') selected @endif>{{__('Other')}}</option>
@@ -109,14 +109,6 @@
             </div>{{-- .col --}}
             
             
-            <div class="col-md-6 my-4">
-                <div class="input-item input-with-label">
-                    <label for="facebook" class="input-item-label">{{__('Facebook Username')}}  </label>
-                    <div class="input-wrap">
-                        <input class="input-focus form-control rounded shadow" type="text" value = "{{$kyc['facebook']}}" id="facebook" name="facebook" >
-                    </div>
-                </div>{{-- .input-item --}}
-            </div>{{-- .col --}}
             
         </div>{{-- .row --}}
         <hr>
@@ -130,7 +122,7 @@
                     <span class="text-require text-danger">*</span>
                     <div class="input-wrap">
                         <select class="input-focus form-control rounded shadow" name="country" id="country" data-dd-class="search-on" required>
-                            <option value="null">{{__('Select Country')}}</option>
+                            <option value="{{null}}">{{__('Select Country')}}</option>
                             @foreach($countries as $country)
                             <option value="{{ $country }}" @if($kyc['country'] == $country) selected @endif>{{ $country }}</option>
                             @endforeach
@@ -175,24 +167,16 @@
             
             <div class="col-md-6 my-4">
                 <div class="input-item input-with-label">
-                    <label for="address_1" class="input-item-label">{{__('Address Line 1')}} </label>
+                    <label for="address" class="input-item-label">{{__('Address')}} </label>
                     <span class="text-require text-danger">*</span>
                     <div class="input-wrap">
-                        <input class="input-focus form-control rounded shadow" type="text" value = "{{$kyc['address1']}}" id="address_1" name="address_1" required>
+                        <input class="input-focus form-control rounded shadow" type="text" value = "{{$kyc['address']}}" id="address" name="address" required>
                     </div>
                 </div>{{-- .input-item --}}
             </div>{{-- .col --}}
             
             
-            <div class="col-md-6 my-4">
-                <div class="input-item input-with-label">
-                    <label for="address_2" class="input-item-label">{{__('Address Line 2')}} </label>
-                    <span class="text-require text-danger">*</span>
-                    <div class="input-wrap">
-                        <input class="input-focus form-control rounded shadow" type="text"  value = "{{$kyc['address2']}}" id="address_2" name="address_2" required>
-                    </div>
-                </div>{{-- .input-item --}}
-            </div>{{-- .col --}}
+
             
         </div>{{-- .row --}}
     </div>{{-- .step-fields --}}
@@ -218,7 +202,7 @@
                 <li>- &nbsp; {{__('Chosen credential must not be expired.')}}</li>
                 <li>- &nbsp; {{__('Document should be in good condition and clearly visible.')}}</li>
                 <li>- &nbsp; {{__('There is no light glare or reflections on the card.')}}</li>
-                <li>- &nbsp; {{__('File is at least 1 MB in size and has at least 300 dpi resolution.')}}</li>
+                <li>- &nbsp; {{__('File should not be larger than 10mb each.')}}</li>
             </ul>
         </div>
             <div class="gaps-2x"></div>
@@ -247,44 +231,11 @@
 
         <label for="type">What file type is this</label>
         <select name="type" id="type" class="form-control" value="{{old('type')}}">
-            <option value="null">Type</option>
+            <option value="{{null}}">Type</option>
             <option value="passport">PASSPORT</option>
             <option value="national_id">NATIONAL ID CARD</option>
             <option value="driver_license">DRIVER'S LICENSE</option>
         </select>
-    </div><hr>
-
-    <div class="form-step form-step3">
-        <div class="form-step-head card-innr">
-            <div class="d-flex  ">
-                <div class="step-number">03</div>
-                <div class="step-head-text">
-                    <h4>{{__('Your Paying Channel')}}</h4>
-                    <p>{{__('Submit your payment channel address that you are going to send and recieve funds')}}</p>
-                </div>
-            </div>
-        </div>{{-- .step-head --}}
-        <hr>
-        
-        <div class="card">
-            <fieldset>
-                <h4>Payment Option</h4>
-                <hr>
-                <label for="wallet_type">Select Wallet</label>
-                <select name="wallet_type" class="form-control rounded" id="wallet_type" style="width: 300px;" required>
-                    <option value="{{null}}">Wallet Type</option>
-                    <option value="ethereum" @if($kyc['wallet_type'] == 'ethereum') selected @endif>Ethereum</option>
-                    <option value="bitcoin" @if($kyc['wallet_type'] == 'bitcoin') selected @endif>Bitcoin</option>
-                    <option value="litecoin" @if($kyc['wallet_type'] == 'litecoin') selected @endif>Litecoin</option>
-                </select>
-    
-                <div class="my-4">
-                    <label for="wallet_address">Enter Your Wallet Address</label>
-                    <input type="text" class="form-control" name="wallet_address" id="wallet_address" placeholder="Enter Your Wallet Address" value="{{$kyc['wallet_address']}}" required>            
-                </div>
-            </fieldset>
-            <span class="my-2">{{__('Note:')}} Address should be ERC20-compliant.</span>
-        </div>
     </div><hr>
 
 <div class="form-step form-step-final">

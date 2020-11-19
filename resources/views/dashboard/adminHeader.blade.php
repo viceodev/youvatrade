@@ -130,19 +130,15 @@
     <ul aria-expanded="false" class="collapse">
         <li> <a class="" href="{{route('user.withdraw')}}"><span class="hide-menu">Withdraw</span></a></li>
 
-        <li> <a class="" href="{{route('user.deposit')}}"><span class="hide-menu">Deposit</span></a></li>
-
-        <li> <a class="" href="{{route('wallets.index')}}"><span class="hide-menu">Wallet</span></a></li>
-
         <li> <a class="" href="{{route('user.payments')}}" ><span class="hide-menu">Transactions</span></a></li>
     </ul>
 </li>
 
 <li class="li-custom"> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-pie-chart"></i><span class="hide-menu">Investment</span></a>
     <ul aria-expanded="false" class="collapse">
-        <li> <a class="" href="{{route('user.plans')}}"><span class="hide-menu">Invest Now</span></a></li>
+        <li> <a class="" href="{{route('user.plans')}}"><span class="hide-menu">Change Plan</span></a></li>
 
-        <li> <a class="" href="{{route('user.payments')}}" ><span class="hide-menu">History</span></a></li>
+        <li> <a class="" href="{{route('user.payments')}}" ><span class="hide-menu">Payments</span></a></li>
     </ul>
 </li>
 

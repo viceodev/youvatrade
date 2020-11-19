@@ -22,16 +22,12 @@ class CreateKYCModelsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('dob')->nullable();
             $table->string('gender')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
+            $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
-            $table->string('facebook')->default('')->nullable();
             $table->string('folder')->default('')->nullable();
-            $table->string('wallet_type')->nullable();
-            $table->string('wallet_address')->nullable();
             $table->text('notes')->nullable();
             $table->integer('reviewedBy')->default(0);
             $table->datetime('reviewedAt')->nullable();

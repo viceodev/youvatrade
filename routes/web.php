@@ -9,6 +9,8 @@ use App\Http\Controllers\User\PlansController;
 use App\Http\Controllers\User\ProfileUpdate;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\User\WalletController;
+use App\Http\Controllers\Admin\AdminController;
 
 
 /*
@@ -61,13 +63,17 @@ Route::view('verify_email', 'auth.emailverify')->middleware(['auth'])->name('ver
 Route::get('verify_email/{id}/{hash}', [LoginController::class, 'email_verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 Route::post('verify_email', [LoginController::class, 'resend_verification_email'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware(['auth', 'verified'])->prefix('user')->group(function(){
-    Route::middleware(['kychandler','planshandler'])->group(function(){
+Route::middleware(['auth', 'verified', 'user'])->prefix('user')->group(function(){
+    Route::middleware(['kychandler'])->group(function(){
         Route::get("/", [UserController::class, 'dashboard'])->name('user.dashboard');
         Route::get("/settings", [ProfileUpdate::class, 'personal_show'])->name('user.settings');
         Route::get("/referrals", [UserController::class, 'referrals'])->name('user.referrals');
-        Route::get("/payments", [UserController::class, 'payments'])->name('user.payments');
-        Route::view("/withdraw", "user.payments.withdraw")->name('user.withdraw');
+        Route::get("/transactions", [UserController::class, 'payments'])->name('user.payments');
+        Route::get("/withdraw", [UserController::class, 'withdraw'])->name('user.withdraw');
+        Route::get("/deposit", [UserController::class, 'deposit'])->name('user.deposit');
+        Route::post("/withdraw", [PaymentController::class, 'withdrawPost'])->name('user.deposit');
+        Route::post("/deposit", [PaymentController::class, 'depositPost'])->name('user.deposit');
+        Route::resource("/wallets", WalletController::class);
         Route::post("/settings/personal", [ProfileUpdate::class, 'personal'])->name('user.update.personal');
         Route::post("/settings/payment", [ProfileUpdate::class, 'payment'])->name('user.update.payment');
         Route::post("/settings/password", [ProfileUpdate::class, 'password'])->name('user.update.password');
@@ -86,6 +92,10 @@ Route::middleware(['auth', 'verified'])->prefix('user')->group(function(){
     Route::get("/kyc/new", [KYCcontroller::class, 'show'])->name('user.kyc.new');
 });
 
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function(){
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
+
 Route::get('test', function(){
     // $plan = new App\Models\Plans_meta();
     // $plan->plan_name = "vip plan d";
@@ -96,7 +106,7 @@ Route::get('test', function(){
     // $plan->save();
 
     // return $plan;
-    return auth()->user();
+    return asset('./images/qr/custom qr.png');
 });
 
 Route::get("mailable/admin", function(){

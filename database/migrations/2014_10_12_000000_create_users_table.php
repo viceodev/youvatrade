@@ -27,8 +27,6 @@ class CreateUsersTable extends Migration
             $table->string('referral_code');
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
-            $table->string('wallet_type')->nullable();
-            $table->string('wallet_address')->nullable();
             $table->string('role');
             $table->string('balance')->nullable();
             $table->timestamp('email_verified_at')->nullable();

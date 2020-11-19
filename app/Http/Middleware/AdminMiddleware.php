@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class KycMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class KycMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if(auth()->user()->status == 'active' && auth()->user()->role == 'user'){
-            return redirect()->route('user.kyc.init')->with('error', 'You have to complete your kyc to continue investing');
+        if(auth()->user()->role != 'admin'){
+            return back()->with('error', 'You are not allowed to access that page');
         }else{
             return $next($request);
         }
+        
     }
 }

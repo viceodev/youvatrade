@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Payments;
 use App\Models\Plans_meta;
 use App\Models\referrals;
 use App\Models\User;
+use App\Models\sitePaymentOptions;
+use App\Models\Transaction;
+use App\Models\UserPaymentMeta;
 
 class UserController extends Controller
 {
@@ -18,7 +20,7 @@ class UserController extends Controller
 
 
     public function payments(){
-        $payments = Payments::where('user_id', auth()->user()->id)->get();
+        $payments = Transaction::where('user_id', auth()->user()->id)->latest()->get();
         return view('user.payments.payments', ['payments' => $payments]);
     }
 
@@ -36,7 +38,6 @@ class UserController extends Controller
     public function dashboard(){
         $info['plan'] = Plans_meta::find(auth()->user()->plan);
         $info['referrals'] = referrals::where('user_id', auth()->user()->id)->latest()->get();
-        $info['payments'] = Payments::where('user_id', auth()->user()->id)->latest()->get();
         $referralUsers = null;
 
         if(count($info['referrals']) > 0){
@@ -49,4 +50,18 @@ class UserController extends Controller
 
         return view('user.dashboard', ['info' => $info]);
     }
+
+    public function deposit(){
+        $infos = sitePaymentOptions::all();
+        return view("user.payments.deposit" ,['infos' => $infos]);
+    }
+
+    public function withdraw(){
+        $info['wallets'] = UserPaymentMeta::all();
+        $info['site_wallets'] = sitePaymentOptions::all();
+        return view("user.payments.withdraw", ['info' => $info]);
+    }
+
+
+
 }

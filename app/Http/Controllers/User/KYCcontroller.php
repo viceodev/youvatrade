@@ -40,24 +40,21 @@ class KYCcontroller extends Controller
             'phone' => 'required',
             'dob' => 'required|date',
             'gender' => 'required',
-            'facebook' => 'nullable|url',
             'country' => 'required',
             'state' => 'required|string',
             'city' => 'required',
             'zip' => 'required',
-            'address_1' => 'required',
-            'address_2' => 'required',
+            'address' => 'required',
             'type' => 'required',
-            'front_doc' => 'required',
-            'back_doc' => 'required',
-            'user_doc' => 'required',
-            'wallet_type' => 'required',
-            'wallet_address' => 'required',
+            'front_doc' => 'required|file|max:10000',
+            'back_doc' => 'required|file|max:10000',
+            'user_doc' => 'required|file|max:10000',
         ]);
 
         $year = explode("-", $request->dob)[0];
         $valid_year = (date('Y') - 18);
         $phoneCheck = KYCModel::where('phone', $request->phone)->get();
+        $allowed = ['png', 'jpeg', 'jpg', 'svg'];
 
         if(!in_array($request->country, $this->countries)){
             return back()->withInput()->with('error', 'Please choose a valid country');
@@ -67,16 +64,20 @@ class KYCcontroller extends Controller
             return back()->withInput()->with('error', 'Phone number has been used already');
         }elseif(strtolower($request->email) != strtolower(auth()->user()->email)){
             return back()->withInput()->with('error', 'Your email does not match your current used email');
-        }elseif($request->wallet_type == null || $request->wallet_address == 'null'){
-            return back()->withInput()->with('error', 'Wallet type is required');
+        }elseif(!in_array($request->front_doc->extension(), $allowed)){
+            return back()->withInput()->with('error', 'Your documents must be in image format (.png, .jpeg, .jpg, .svg)');
+        }elseif(!in_array($request->back_doc->extension(), $allowed)){
+            return back()->withInput()->with('error', 'Your documents must be in image format (.png, .jpeg, .jpg, .svg)');
+        }elseif(!in_array($request->user_doc->extension(), $allowed)){
+            return back()->withInput()->with('error', 'Your documents must be in image format (.png, .jpeg, .jpg, .svg)');
         }else{
             if($request->use){
                 $this->updateUser($request);
             }
 
             $store = $this->makeFile($request);
-                return back()->with('success', 'Your KYC Application has been submitted successfully');
-            return $valid_year."".$year;
+            // return $request;
+            return back()->with('success', 'Your KYC Application has been submitted successfully');
         }
     }
 
@@ -86,8 +87,6 @@ class KYCcontroller extends Controller
         $user->dob = $request->dob;
         $user->nationality = $request->country;
         $user->state = $request->state;
-        $user->wallet_type = $request->wallet_type;
-        $user->wallet_address = $request->wallet_address;
         $user->save();
     }
 
@@ -105,12 +104,9 @@ class KYCcontroller extends Controller
         $fileContent .= "State: ".$request->state."\n";
         $fileContent .= "City: ".$request->city."\n";
         $fileContent .= "Zip Code: ".$request->zip."\n";
-        $fileContent .= "Address 1: ".$request->address_1."\n";
-        $fileContent .= "Address 2: ".$request->address_2."\n";
+        $fileContent .= "Address 1: ".$request->address."\n";
         $fileContent .= "Phone Number: ".$request->phone."\n\n\n";
-        $fileContent .= "Payment Channel \n\n\n";
-        $fileContent .= "Wallet Type:".$request->wallet_type."\n";
-        $fileContent .= "Wallet Address:".$request->wallet_address."\n";
+ 
 
 
         $txtFile = Storage::put('kycs/'.$folder."/info.txt", $fileContent);
@@ -172,21 +168,17 @@ class KYCcontroller extends Controller
         $new_kyc->phone  = $request->phone; 
         $new_kyc->dob  = $request->dob;
         $new_kyc->gender  = $request->gender; 
-        $new_kyc->address1  = $request->address_1; 
-        $new_kyc->address2  = $request->address_2; 
+        $new_kyc->address = $request->address; 
         $new_kyc->city  = $request->city; 
         $new_kyc->state  = $request->state; 
         $new_kyc->zip  = $request->zip; 
         $new_kyc->country  = $request->country; 
-        $new_kyc->facebook  = $request->facabook; 
         $new_kyc->folder  = $folder;
-        $new_kyc->wallet_type = $request->wallet_type;
-        $new_kyc->wallet_address = $request->wallet_address;
         $new_kyc->save();
 
 
         $user = User::find(auth()->user()->id);
-        $user->status = 'verified';
+        $user->status = 'unverified';
         $user->save();
     }
 
@@ -199,20 +191,17 @@ class KYCcontroller extends Controller
             'phone' => 'required',
             'dob' => 'required|date',
             'gender' => 'required',
-            'facebook' => 'nullable|url',
             'country' => 'required',
             'state' => 'required|string',
             'city' => 'required',
             'zip' => 'required',
-            'address_1' => 'required',
-            'address_2' => 'required',
-            'wallet_type' => 'required',
-            'wallet_address' => 'required',
+            'address' => 'required',
         ]);
 
         $year = explode("-", $request->dob)[0];
         $valid_year = (date('Y') - 18);
         $phoneCheck = KYCModel::where('phone', $request->phone)->get();
+        $allowed = ['png', 'jpeg', 'jpg', 'svg'];
 
         if(!in_array($request->country, $this->countries)){
             return back()->withInput()->with('error', 'Please choose a valid country');
@@ -221,12 +210,23 @@ class KYCcontroller extends Controller
         }elseif(strtolower($request->email) != strtolower(auth()->user()->email)){
             return back()->withInput()->with('error', 'Your email does not match your current used email');
         }else{
+            $this->checkFiles($request->front_doc, $allowed);
+            $this->checkFiles($request->back_doc, $allowed);
+            $this->checkFiles($request->user_doc, $allowed);
             $this->updateUserKyc($request);
             if(isset($request->front_doc) || isset($request->back_doc) ||  isset($request->user_doc)){
                 return $this->updateFiles($request);
             }
 
             return back()->with('success', 'KYC Application updated successfully');
+        }
+    }
+
+    public function checkFiles($file, $allowed){
+        if($file){
+            if(!in_array($file->extension(), $allowed)){
+                return back()->withInput()->with('error', 'Your documents must be in image format (.png, .jpeg, .jpg, .svg)');
+            }
         }
     }
 
@@ -275,15 +275,11 @@ class KYCcontroller extends Controller
         $kyc->phone  = $request->phone; 
         $kyc->dob  = $request->dob;
         $kyc->gender  = $request->gender; 
-        $kyc->address1  = $request->address_1; 
-        $kyc->address2  = $request->address_2; 
+        $kyc->address  = $request->address; 
         $kyc->city  = $request->city; 
         $kyc->state  = $request->state; 
         $kyc->zip  = $request->zip; 
         $kyc->country  = $request->country; 
-        $kyc->facebook  = $request->facabook; 
-        $kyc->wallet_type = $request->wallet_type;
-        $kyc->wallet_address = $request->wallet_address;
         $kyc->status = 'changed';
         $kyc->save();
     }

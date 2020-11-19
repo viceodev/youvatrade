@@ -27,18 +27,20 @@
     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr>
-        <th>Payment Ref</th>
-        <th>Payment Item</th>
-        <th>Payment Date</th>
-        <th>Payment Status</th>
+        <th>Transaction Ref</th>
+        <th>Transaction Type</th>
+        <th>Amount</th>
+        <th>Status</th>        
+        <th>Date</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Payment Ref</th>
-        <th>Payment Item</th>
-        <th>Payment Date</th>
-        <th>Payment Status</th>
+        <th>Transaction Ref</th>
+        <th>Transaction Type</th>
+        <th>Amount</th>
+        <th>Status</th>        
+        <th>Date</th>
     </tr>
     </tfoot>
 
@@ -47,15 +49,18 @@
         @foreach($payments as $payment)
             <tr>
                 <td>{{$payment['ref']}}</td>
-                <td class="text-capitalize">{{$payment['purpose']}}</td>
-                <td>{{$payment['created_at']}}</td>
+                <td class="text-capitalize">{{$payment['type']}}</td>
+                <td>{{$payment['amount']}}</td>
                 <td>
                     @if($payment['status'] == 0)
                         <span class="btn btn-danger">FAILED</span>
-                    @else
+                    @elseif($payment['status'] == 1)
                         <span class="btn btn-success">SUCCESSFUL</span>
+                    @elseif($payment['status'] == 2)
+                        <span class="btn btn-danger">PENDING</span>
                     @endif
                 </td>
+                <td>{{$payment['created_at']}}</td>
             </tr>
 
         @endforeach

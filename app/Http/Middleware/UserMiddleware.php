@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class PlansMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class PlansMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->plan == null || empty(auth()->user()->plan)){
-            return redirect()->route('user.plans')->with('error', 'Please choose a plan to continue investing');
+        if(auth()->user()->role != 'user' && auth()->user()->role != 'special'){
+            return back()->with('error', 'You are not allowed to access that page');
         }else{
             return $next($request);
         }
-        
     }
 }

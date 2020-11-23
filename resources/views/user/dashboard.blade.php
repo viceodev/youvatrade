@@ -80,8 +80,10 @@
     <span><i class="ti-location-pin f-s-40"></i></span>
     </div>
     <div class="media-body media-text-right">
-    <h2 class="color-white text-white">278</h2>
-    <p class="m-b-0 text-white">Total Visitor</p>
+    <h2 class="color-white text-white">
+        {{$info['deposit']}}
+    </h2>
+    <p class="m-b-0 text-white">Total Deposit</p>
     </div>
     </div>
     </div>
@@ -153,24 +155,28 @@
             <table class="table">
             <thead>
             <tr>
-            <th>Ref</th>
-            <th>Item</th>
-            <th>Date</th>
-            <th>Status</th>
+                <th>Transaction Ref</th>
+                <th>Transaction Type</th>
+                <th>Amount</th>
+                <th>Status</th>        
+                <th>Date</th>
             </tr>
             </thead>
             <tbody>
-            {{--     @if(count($info['payments']) > 0)
-                    @foreach($info['payments'] as $payment)
+                @if(count($info['transactions']) > 0)
+                    @foreach($info['transactions'] as $transaction)
                         <tr>
-                            <td>{{$payment['ref']}}</td>
-                            <td class="text-capitalize">{{$payment['purpose']}}</td>
-                            <td>{{$payment['created_at']}}</td>
-                            @if($payment['status'] == 0)
+                            <td>{{$transaction['ref']}}</td>
+                            <td class="text-capitalize">{{$transaction['type']}}</td>
+                            <td>{{$transaction['amount']}}</td>
+                            @if($transaction['status'] == 0)
                                 <td><span class="badge badge-danger">FAILED</span></td>
+                            @elseif($transaction['status'] == 2)
+                                <td><span class="badge badge-danger">PENDING</span></td>
                             @else
                                 <td><span class="badge badge-success">SUCCESSFUL</span></td>
                             @endif
+                            <td>{{$transaction['created_at']}}</td>
                         </tr>
                     @endforeach
     
@@ -179,12 +185,13 @@
                     <div class="card lead text-center text-danger">
                         <span><i class="fa fa-info-circle mx-1"></i>Opps,Nothing to show!</span>
                     </div>
-                @endif--}}
+                @endif
             </tbody>
             </table>
-            @if(count($info['referrals']) > 0)
+            @if(count($info['transactions']) > 0)
             <div class="text-center">
-               <a href="{{route('user.payments')}}" class="btn btn-primary my-3">See All</a> 
+               <a href="{{route('user.investments')}}" class="btn btn-primary my-3">SEE INVESTMENT HISTORY</a> 
+               <a href="{{route('user.payments')}}" class="btn btn-primary my-3">SEE FUNDS HISTORY</a> 
             </div>
             @endif
             

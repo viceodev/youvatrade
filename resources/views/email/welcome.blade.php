@@ -11,7 +11,7 @@
 </div>
 
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => route('user.plans')])
 Choose a Plan
 @endcomponent
 

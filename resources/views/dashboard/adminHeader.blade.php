@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/logo.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{asset('dashboard/images/logo.png')}}">
 <title>Youvatrade Investments</title>
 
 <link href="{{asset('./dashboard/css/style.css')}}" rel="stylesheet">
@@ -24,14 +24,13 @@
 <nav class="navbar top-navbar navbar-expand-md">
 
 <div class="navbar-header">
-<a class="navbar-brand" href="index-2.html">
-
-<b><img src="{{asset('images/logo.png')}}" alt="homepage" class="dark-logo" /></b>
-
-
-{{-- <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
-<span><a href="#" class="dark-logo">YOUVATRADE</a></span> --}}
-</a>
+    <a class="navbar-brand" href="{{route('admin.dashboard')}}">
+    
+    <b><img src="{{asset('./dashboard/images/favicon.png')}}" alt="homepage" class="dark-logo" style="max-width: 80px;"></b>
+    
+    
+    <span><img src="{{asset('./dashboard/images/logo-text.png')}}" alt="homepage" class="dark-logo" style="width: 50%;"></span>
+    </a>
 </div>
 
 <div class="navbar-collapse">
@@ -48,52 +47,10 @@
 
 
     
-<li class="nav-item dropdown mega-menu"> <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-wallet m-r-5"></i> Balance: $
-    @if(auth()->user()->balance == null)
-        0
-    @else
-        {{auth()->user()->balance}}</a>
-    @endif
+<li class="nav-item dropdown mega-menu"> <a class="nav-link dropdown-toggle text-muted" href="{{route('admin.dashboard')}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+    {{strtoupper(auth()->user()->name)}}
 </a></li>
     
-
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-shopping-cart"></i>
-@if(session()->get('cart'))
-<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-@endif
-</a>
-<div class="dropdown-menu dropdown-menu-right mailbox animated slideInRight">
-<ul>
-<li>
-<div class="drop-title">Notifications</div>
-</li>
-<li>
-<div class="header-notify">
-    @if(session()->get('cart'))
-        <a href="{{route('user.checkout')}}" class="bg-light">
-        <i class="cc BTC m-r-10 f-s-40" title="BTC"></i>
-        <div class="notification-content">
-            <h5 class="text-uppercase">{{session()->get('cart')['plan_name']}}</h5> <span class="mail-desc">${{session()->get('cart')['amount']}}</span>
-        </div>
-        </a>
-
-    @else
-        <div class="notification-content lead text-danger text-center">
-            <span><i class="fa fa-info-circle mx-1"></i></span> Opps,Nothing to show!
-        </div>
-    @endif
-</div>
-</li>
-<li>
-<a class="nav-link text-center" href="javascript:void(0);"> Check all notifications <i class="fa fa-angle-right"></i> </a>
-</li>
-</ul>
-</div>
-</li>
-
-
-
 
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
@@ -119,35 +76,33 @@
 <nav class="sidebar-nav">
 <ul id="sidebar-menu">
 <li class="nav-devider"></li>
-<li class="nav-label">Home</li>
+<li class="nav-label">Admin Dashboard</li>
 <li class="nav-desc">
     
 </li>
 
-<li class="li-custom"> <a class="" href="{{route('user.dashboard')}}" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Dashboard</span></a></li>
+<li class="li-custom"> <a class="" href="{{route('admin.dashboard')}}" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Dashboard</span></a></li>
 
-<li class="li-custom"> <a class="has-arrow" href="#" aria-expanded="false"><i class="ti ti-wallet"></i><span class="hide-menu">Funds</span></a>
+<li class="li-custom"> <a class="" href="{{route('users.index')}}" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">User Management</span></a></li>
+
+<li class="li-custom"> <a class="" href="{{route('admin.investments')}}" aria-expanded="false"><i class="fa fa-pie-chart"></i><span class="hide-menu">Investments</span></a></li>
+
+<li class="li-custom"> <a class="" href="{{route('transaction.index')}}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Transactions</span></a></li>
+
+<li class="li-custom"> <a class="" href="{{route('admin.kycs')}}" aria-expanded="false"><i class="fa fa-copy"></i><span class="hide-menu">KYC Applications</span></a></li>
+
+<li class="li-custom"> <a class="" href="{{route('admin.bulk.emails')}}" aria-expanded="false"><i class="ti ti-email"></i><span class="hide-menu">Send Bulk Emails</span></a></li>
+
+
+<li class="li-custom"> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-pie-chart"></i><span class="hide-menu">Site Details</span></a>
     <ul aria-expanded="false" class="collapse">
-        <li> <a class="" href="{{route('user.withdraw')}}"><span class="hide-menu">Withdraw</span></a></li>
+        <li> <a class="" href="{{route('site_wallets.index')}}"><span class="hide-menu">Wallets</span></a></li>
 
-        <li> <a class="" href="{{route('user.payments')}}" ><span class="hide-menu">Transactions</span></a></li>
+        <li> <a class="" href="{{route('site_wallets.create')}}" ><span class="hide-menu">Add Wallet</span></a></li>
     </ul>
 </li>
 
-<li class="li-custom"> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-pie-chart"></i><span class="hide-menu">Investment</span></a>
-    <ul aria-expanded="false" class="collapse">
-        <li> <a class="" href="{{route('user.plans')}}"><span class="hide-menu">Change Plan</span></a></li>
 
-        <li> <a class="" href="{{route('user.payments')}}" ><span class="hide-menu">Payments</span></a></li>
-    </ul>
-</li>
-
-<li class="li-custom"> <a class="" href="{{route('user.referrals')}}" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Referrals</span></a></li>
-
-<li class="li-custom"> <a class="" href="{{route('user.kyc.new')}}"><i class="ti ti-files"></i><span class="hide-menu">KYC Application</span></a></li>
-
-
-<li class="li-custom"> <a class="" href="{{route('user.settings')}}"><i class="ti ti-user"></i><span class="hide-menu">Profile</span></a></li>
 
 <li class="li-custom" id="logout"> <a class="" href="#"><i class="fa fa-power-off"></i><span class="hide-menu">Logout</span></a></li>
 

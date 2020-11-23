@@ -63,7 +63,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'kychandler' => \App\Http\Middleware\KycMiddleware::class,
-        'user' => \App\Http\Middleware\UserMiddleware::class,
+        'banned' => \App\Http\Middleware\BannedMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'special' => \App\Http\Middleware\SpecialMiddleware::class,
     ];
 }

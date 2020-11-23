@@ -49,7 +49,11 @@ class RegisterController extends Controller
             $refer->user_id = $user[0]->id;
             $refer->referral_user_id = $referral_id;
             $refer->bonus = 0;
-            $refer->save();         
+            $refer->save();       
+            
+            $current = User::find(auth()->user()->id);
+            $current->referral = $user[0]->name;
+            $current->save();
         }
 
 
@@ -75,14 +79,14 @@ class RegisterController extends Controller
                 $user->role = 'user';
                 $user->save();
 
-                event(new Registered($user));
+                // event(new Registered($user));
                 Auth::login($user);
 
                 if($request->referral != null){
                     $this->referral_bonus($request->referral, auth()->user()->id);
                 }
 
-                Mail::to($user->email)->send(new Welcome($user));
+                // Mail::to($user->email)->send(new Welcome($user));
 
 
                 return redirect()->intended(auth()->user()->role."/welcome");                

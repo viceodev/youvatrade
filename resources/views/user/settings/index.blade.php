@@ -25,13 +25,11 @@
                 <h4 class="card-title">Profile Details</h4>
                 <ul class="nav nav-tabs" role="tablist"> 
                     <li class="nav-item"> <a class="nav-link  active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">PERSONAL DATA</span></a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"><i class="ti-money"></i></span> <span class="hidden-xs-down">Payment Channel</span></a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"><i class="ti-lock"></i></span> <span class="hidden-xs-down">Password</span></a> </li>
                 </ul>
 
                 <div class="tab-content tabcontent-border">
                     @include('user.settings.personal')
-                    @include('user.settings.payments')
                     @include('user.settings.password')
                 </div>
 

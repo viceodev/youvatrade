@@ -1,3 +1,12 @@
+                        
+                        <div class="card slide-title">
+                            
+                        </div>
+
+                        <div class="title-head-subtitle text-center">
+                            <p class="lead">Instant Profits Withdrawal</p><br>
+                            <p class="lead">5% Active Referral Profits On All Plans</p>
+                        </div>
                         <!-- Pricing Tables Starts -->
                         <ul class="pricing-list bounce-invert">
                             <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">

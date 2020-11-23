@@ -44,7 +44,7 @@
                                 container.innerHTML = `
                                 <div class="form-group">
                                 <label for="wallet_type">Wallet Type</label>
-                                    <select name="type" id="wallet_type" class="form-control" required>
+                                    <select name="wallet_type" id="wallet_type" class="form-control" required>
                                         <option value="{{null}}">Choose Type</option>
                                         @foreach($info['site_wallets'] as $wallet)
                                             <option value="{{$wallet['wallet_type']}}">{{strtoupper($wallet['wallet_type'])}}</option>
@@ -78,6 +78,7 @@
                     
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Request Withdrawal</button>
+                        <a href="{{route('wallets.index')}}" class="btn btn-success">Add New Wallet</a>
                     </div>
                 </form>
             </div>

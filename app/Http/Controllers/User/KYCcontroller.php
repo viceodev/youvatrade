@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Models\KYCModel;
 use App\Models\User;
+use App\Mail\Kyc\KycNew;
+use App\Mail\Kyc\KycUpdate;
+use Illuminate\Support\Facades\Mail;
 // use ZipArchive;
 
 class KYCcontroller extends Controller
@@ -22,9 +25,7 @@ class KYCcontroller extends Controller
     }
     
     public function show(){
-        $user_kyc = KYCModel::where('user_id', auth()->user()->id)->get();
-
-        if(count($user_kyc) > 0 ){
+        if(auth()->user()->status == 'verified' || auth()->user()->status == 'unverified'){
             return view('user.kycs.kyc_update', ['countries' => $this->countries])->with('kyc', $user_kyc[0]);
         }else{
             return view('user.kycs.kyc_new', ['countries' => $this->countries]);
@@ -76,6 +77,8 @@ class KYCcontroller extends Controller
             }
 
             $store = $this->makeFile($request);
+
+            Mail::to(auth()->user()->email)->send(new KycNew());
             // return $request;
             return back()->with('success', 'Your KYC Application has been submitted successfully');
         }
@@ -173,6 +176,7 @@ class KYCcontroller extends Controller
         $new_kyc->state  = $request->state; 
         $new_kyc->zip  = $request->zip; 
         $new_kyc->country  = $request->country; 
+        $new_kyc->type = $request->type;
         $new_kyc->folder  = $folder;
         $new_kyc->save();
 
@@ -218,6 +222,7 @@ class KYCcontroller extends Controller
                 return $this->updateFiles($request);
             }
 
+            Mail::to(auth()->user()->email)->send(new KycUpdate());
             return back()->with('success', 'KYC Application updated successfully');
         }
     }
@@ -280,6 +285,7 @@ class KYCcontroller extends Controller
         $kyc->state  = $request->state; 
         $kyc->zip  = $request->zip; 
         $kyc->country  = $request->country; 
+        $kyc->type = $request->type;
         $kyc->status = 'changed';
         $kyc->save();
     }

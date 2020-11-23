@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\sitePaymentOptions;
 use App\Models\UserPaymentMeta;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Wallets\WalletAdd;
+use App\Mail\Wallets\WalletDeactivate;
 
 class WalletController extends Controller
 {
@@ -52,6 +55,7 @@ class WalletController extends Controller
         $user->status = 1;
         $user->save();
 
+        Mail::to(auth()->user()->email)->send(new WalletAdd($user));
 
         return back()->with('success', 'Wallet archive updated successfully');
     }
@@ -96,6 +100,9 @@ class WalletController extends Controller
         }elseif($request->action == 'deactivate'){
             $user->status = 0;
             $user->save();
+            
+            Mail::to(auth()->user()->email)->send(new WalletDeactivate($user));
+            
             return back()->with('success', 'Wallet archive updated successfully');
         }
     }

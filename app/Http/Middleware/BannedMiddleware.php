@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class UserMiddleware
+class BannedMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,11 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role != 'user' && auth()->user()->role != 'special'){
-            return back()->with('error', 'You are not allowed to access that page');
+        if(auth()->user()->banned == true){
+            return redirect()->route('index')->with('error', 'Your account has been banned, please contact our support team via Support@youvatrade.com');
         }else{
             return $next($request);
         }
+        
     }
 }

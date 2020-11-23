@@ -25,12 +25,14 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo_path')->nullable();
             $table->integer('plan')->nullable();
             $table->string('referral_code');
+            $table->string('referral')->nullable();
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->string('role');
             $table->string('balance')->nullable();
+            $table->string('banned')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->timestamp('last_payed')->nullable();
+            $table->integer('last_payed')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Mail\PasswordReset;
+use App\Mail\LoginMail;
 
 class LoginController extends Controller
 {
@@ -25,19 +26,26 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->get();
 
         if(count($user) > 0){
-            if($request->remember){
-                if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
-                    return redirect()->intended(auth()->user()->role);
-                }else{
-                    return back()->withInput()->with('error', 'Your password is incorrect');
-                }
+            if($user[0]['banned'] == true){
+                return back()->with('error', 'You have been banned, please contact our Support team via Support@youvatrade.com for more details');
             }else{
-                if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-                    return redirect()->intended(auth()->user()->role);
-                 }else{
-                     return back()->withInput()->with('error', 'Your password is incorrect');
-                 }               
+                if($request->remember){
+                    if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
+                        Mail::to($request->email)->send(new LoginMail(auth()->user()));
+                        return redirect()->intended(auth()->user()->role);
+                    }else{
+                        return back()->withInput()->with('error', 'Your password is incorrect');
+                    }
+                }else{
+                    if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+                        Mail::to($request->email)->send(new LoginMail(auth()->user()));
+                        return redirect()->intended(auth()->user()->role);
+                    }else{
+                        return back()->withInput()->with('error', 'Your password is incorrect');
+                    }               
+                }                
             }
+
         }else{
             return back()->withInput()->with('error', 'User does not exist');
         }

@@ -55,50 +55,28 @@
                                     <div class="col-lg-3 card">
                                         <a class="btn btn-primary btn-flat btn-addon btn-lg btn-block" href="#">Pay With</a>
 
-                                        <a href="" class="btn btn-outline border my-1">
-                                            <span><i class="ti-wallet mb-1 mr-1"></i>
-                                                <h5 style="display: inline;">Saved  Credentials</h5>
-                                            </span>
-                                        </a>
+                    <form method="post" action="{{route('user.checkout.wallet')}}" class="form-group">
+                        @csrf
+                        <input type="hidden" name="ref" value="{{$cart['ref']}}">
+                        <input type="hidden" name="amount" value="{{$cart['amount']}}">
+                        <button type="submit" class="btn btn-secondary border my-1 container-fluid">
+                                    WALLET BALANCE
+                        </button>
+                    </form>
 
-                    <form method="post" action="https://payeer.com/merchant/">
-                        <input type="hidden" name="m_shop" value="{{$secret['m_shop']}}">
-                        <input type="hidden" name="m_orderid" value="{{$secret['m_orderid']}}">
-                        <input type="hidden" name="m_amount" value="{{$secret['m_amount']}}">
-                        <input type="hidden" name="m_curr" value="{{$secret['m_curr']}}">
-                        <input type="hidden" name="m_desc" value="{{$secret['m_desc']}}">
-                        {{-- <input type="hidden" name="m_sign" value="{{$secret['m_sign']}}"> --}}
-                        <?php /*
-                        <input type="hidden" name="form[ps]" value="2609">
-                        <input type="hidden" name="form[curr[2609]]" value="USD">
-                        */ ?>
-                        <?php /*
-                        <input type="hidden" name="m_params" value="<?=$m_params?>">
-                        <input type="hidden" name="m_cipher_method" value="AES-256-CBC-IV">
-                        */ ?>
-                                    <button type="submit" class="btn btn-outline border my-1">
-                                            <span><i class="cc BTC mb-1 mr-1"></i></span>
-                                                <h5 style="display: inline;">Bitcoin Wallet</h5>
-                                    </button>
-                        </form>
-
-                                        
-
-                                        <a href="" class="btn btn-outline border my-1">
-                                            <span><i class="cc LTC mb-1 mr-1"></i></span>
-                                                <h5 style="display: inline;">Litecoin Wallet</h5>
-                                           
-                                        </a>
-
-                                        <a href="" class="btn btn-outline border my-1">
-                                            <span class=""><i class="cc ETH f-s-20"></i></span>
-                                                <h5 style="display: inline;">Ethereum  Wallet</h5>
-                                        </a>
-
-                                        <a href="" class="btn btn-outline border my-1">
-                                            <span class=""><i class="mdi mdi-account-card-details f-s-20"></i></span>
-                                                <h5 style="display: inline;">Debit Card</h5>
-                                        </a>
+                    @if(count($wallets) > 0)
+                    @foreach($wallets as $wallet)
+                    <form method="post" action="{{route('user.checkout.crypto')}}" class="form-group">
+                        @csrf
+                        <input type="hidden" name="ref" value="{{$cart['ref']}}">
+                        <input type="hidden" name="amount" value="{{$cart['amount']}}">
+                        <input type="hidden" name="method" value="{{$wallet['wallet_type']}}">
+                        <button type="submit" class="btn btn-secondary border mb-1 container-fluid">
+                                    {{strtoupper($wallet['wallet_type'])}} WALLET
+                        </button>
+                    </form>
+                    @endforeach
+                    @endif
                                     </div>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePayoutsTable extends Migration
+class CreateSiteDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePayoutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payouts', function (Blueprint $table) {
+        Schema::create('site_details', function (Blueprint $table) {
             $table->id();
+            $table->string('field');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePayoutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payouts');
+        Schema::dropIfExists('site_details');
     }
 }

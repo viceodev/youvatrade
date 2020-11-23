@@ -27,6 +27,7 @@ class CreateKYCModelsTable extends Migration
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
+            $table->string('type');
             $table->string('folder')->default('')->nullable();
             $table->text('notes')->nullable();
             $table->integer('reviewedBy')->default(0);

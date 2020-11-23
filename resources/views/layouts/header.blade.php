@@ -167,7 +167,7 @@
                                 <li id="about"><a href="{{route('about')}}">About Us</a></li>
                                 <li id="services"><a href="{{route('services')}}">Services</a></li>
                                 <li id="pricing"><a href="{{route('pricing')}}">Pricing</a></li>
-                                <li class="dropdown">
+                                {{-- <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
@@ -175,8 +175,8 @@
 										<li><a href="blog-grid-no-sidebar.html">Grid No Sidebar</a></li>
                                         <li><a href="blog-post.html">Single Post</a></li>
                                     </ul>
-                                </li>
-                                <li class="dropdown">
+                                </li> --}}
+                                {{-- <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">pages <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="register.html">Register page</a></li>
@@ -189,7 +189,7 @@
                                         <li><a href="terms-of-services.html">Terms of Services</a></li>
 										<li><a href="coming-soon.html">Coming Soon</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li id="contact"><a href="{{route('contact')}}">Contact Us</a></li>
 								<!-- Cart Icon Starts -->
 								{{-- <li class="cart"><a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i></a></li> --}}

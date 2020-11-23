@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/logo.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{asset('dashboard/images/favicon.png')}}">
 <title>Youvatrade Investments</title>
 
 <link href="{{asset('./dashboard/css/style.css')}}" rel="stylesheet">
@@ -24,23 +24,21 @@
 <nav class="navbar top-navbar navbar-expand-md">
 
 <div class="navbar-header">
-<a class="navbar-brand" href="index-2.html">
-
-<b><img src="{{asset('images/logo.png')}}" alt="homepage" class="dark-logo" /></b>
-
-
-{{-- <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
-<span><a href="#" class="dark-logo">YOUVATRADE</a></span> --}}
-</a>
+    <a class="navbar-brand" href="{{route('user.dashboard')}}">
+    
+    <b><img src="{{asset('./dashboard/images/favicon.png')}}" alt="homepage" class="dark-logo" style="max-width: 80px;"></b>
+    
+    
+    <span><img src="{{asset('./dashboard/images/logo-text.png')}}" alt="homepage" class="dark-logo" style="width: 50%;"></span>
+    </a>
 </div>
 
 <div class="navbar-collapse">
 
 <ul class="navbar-nav mr-auto mt-md-0">
 
-<li class="nav-item"> <a class="nav-link toggle-nav hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+<li class="nav-item"> <a class="nav-link toggle-nav hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a></li>
 <li class="nav-item m-l-10"> <a class="nav-link sidebartoggle hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-
 
 </ul>
 
@@ -119,7 +117,7 @@
 <nav class="sidebar-nav">
 <ul id="sidebar-menu">
 <li class="nav-devider"></li>
-<li class="nav-label">Home</li>
+<li class="nav-label">User Dashboard</li>
 <li class="nav-desc">
     
 </li>
@@ -142,7 +140,7 @@
     <ul aria-expanded="false" class="collapse">
         <li> <a class="" href="{{route('user.plans')}}"><span class="hide-menu">Invest Now</span></a></li>
 
-        <li> <a class="" href="{{route('user.payments')}}" ><span class="hide-menu">History</span></a></li>
+        <li> <a class="" href="{{route('user.investments')}}" ><span class="hide-menu">History</span></a></li>
     </ul>
 </li>
 

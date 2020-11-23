@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('type');
             $table->string('amount');
             $table->string('description');
+            $table->string('plan')->nullable();
             $table->string('payment_channel');
             $table->string('payment_address');
             $table->string('status');

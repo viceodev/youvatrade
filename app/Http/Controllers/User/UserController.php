@@ -20,8 +20,18 @@ class UserController extends Controller
 
 
     public function payments(){
-        $payments = Transaction::where('user_id', auth()->user()->id)->latest()->get();
+        $payments = Transaction::where('user_id', auth()->user()->id)->cursor()->filter(function($payment){
+            return $payment->type != 'investment' && $payment->type != 'return';
+        });
         return view('user.payments.payments', ['payments' => $payments]);
+    }
+
+    public function investments(){
+        $payments = Transaction::where('user_id', auth()->user()->id)->cursor()->filter(function($payment){
+            return $payment->type == 'investment' || $payment->type == 'return';
+        });
+
+        return view('user.payments.investments', ['payments' => $payments]);
     }
 
     public function referrals(){
@@ -38,6 +48,7 @@ class UserController extends Controller
     public function dashboard(){
         $info['plan'] = Plans_meta::find(auth()->user()->plan);
         $info['referrals'] = referrals::where('user_id', auth()->user()->id)->latest()->get();
+        $info['transactions'] = Transaction::where('user_id', auth()->user()->id)->get();
         $referralUsers = null;
 
         if(count($info['referrals']) > 0){
@@ -46,7 +57,17 @@ class UserController extends Controller
             }
         }
 
+        $info['deposit'] = 0;
         $info['referUsers'] = $referralUsers;
+        if(count($info['transactions'])){
+            foreach($info['transactions'] as $transaction){
+                if($transaction['type'] == 'deposit' && $transaction['status'] == 1){
+                    $info['deposit'] += $transaction['amount'];
+                }
+            }
+        }
+        $info['referrals'] = referrals::where('user_id', auth()->user()->id)->latest()->take(5)->get();
+        $info['transactions'] = Transaction::where('user_id', auth()->user()->id)->take(5)->get();
 
         return view('user.dashboard', ['info' => $info]);
     }
@@ -57,7 +78,7 @@ class UserController extends Controller
     }
 
     public function withdraw(){
-        $info['wallets'] = UserPaymentMeta::all();
+        $info['wallets'] = UserPaymentMeta::where('user_id', auth()->user()->id)->get();
         $info['site_wallets'] = sitePaymentOptions::all();
         return view("user.payments.withdraw", ['info' => $info]);
     }

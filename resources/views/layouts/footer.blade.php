@@ -11,7 +11,11 @@
                                 </div>
                                 <!-- Call To Action Text Ends -->
                                 <!-- Call To Action Button Starts -->
+                                @if(auth()->check())
+                                <p class="action-btn"><a class="btn btn-primary" href="{{route('user.dashboard')}}">Dashboard</a></p>
+                                @else
                                 <p class="action-btn"><a class="btn btn-primary" href="{{route('register')}}">Register Now</a></p>
+                                @endif
                                 <!-- Call To Action Button Ends -->
                             </div>
                         </div>

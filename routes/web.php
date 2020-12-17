@@ -36,7 +36,7 @@ use App\Http\Controllers\Admin\AdminWithdrawalController;
     Route::view("/about-us", 'visitors.about-us')->name('about');
     Route::view("/services", 'visitors.services')->name('services');
     Route::get("/pricing", [VisitorsController::class, 'pricing'])->name('pricing');
-    Route::view("/contact", 'visitors.contact')->name('contact');
+    Route::get("/contact", [VisitorsController::class, 'contactUs'])->name('contact');
     Route::view("/faq", 'visitors.faqs')->name('faq');
     Route::view("/terms-of-services", 'visitors.terms')->name('terms');
     Route::view("/404", 'errors.404')->name('404');
@@ -140,7 +140,8 @@ Route::get('test', function(){
     // $plan->save();
 
     // return $plan;
-    return asset('./images/qr/custom qr.png');
+    // return asset('./images/qr/custom qr.png');
+    return strtotime('yesterday');
 });
 
 Route::get("mailable/admin", function(){

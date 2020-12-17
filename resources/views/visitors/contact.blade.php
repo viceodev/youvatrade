@@ -85,7 +85,7 @@
                                         <i class="fa fa-home big-icon"></i>
                                         <div class="contact-info-box-content">
                                             <h4>Address</h4>
-                                            <p>123 Disney Street Slim Av. Brooklyn Bridge, NY, New York</p>
+                                            <p>{{$info['address']}}</p>
                                         </div>
                                     </div>
                                     <!-- Contact Info Box Ends -->
@@ -94,7 +94,7 @@
                                         <i class="fa fa-phone big-icon"></i>
                                         <div class="contact-info-box-content">
                                             <h4>Phone Numbers</h4>
-                                            <p>+88 0123 4567 890<br>+88 0231 3421 453</p>
+                                        <p>{{$info['phone']}}</p>
                                         </div>
                                     </div>
                                     <!-- Contact Info Box Ends -->
@@ -104,7 +104,7 @@
                                         <div class="contact-info-box-content">
                                             <h4>Email Addresses</h4>
     
-                                            <p>contact@example.com<br>info@example.com</p>
+                                        <p>{{$info['email']}}</p>
                                         </div>
                                     </div>
                                     <!-- Contact Info Box Ends -->

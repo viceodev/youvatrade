@@ -1,359 +1,94 @@
-            {{-- <!-- transaction section begin -->
-            <section class="transaction-section">
-                <div class="container">
-                    
-                    <div class="row d-flex ">
-                        <div class="col-lg-7 col-md-11 justify-content-center">
-            
-                            <ul class="nav nav-pills mb-3 transaction-bnt-outline" id="transaction-pills-tab" role="tablist">
-                                <li class="nav-item transaction-nav-item ">
-                                    <a class="nav-link transaction-nav-link active" id="transaction-pills-deposits-tab" data-toggle="pill" href="#pills-deposits" role="tab" aria-controls="pills-deposits" aria-selected="true">
-                                        <span class="d-flex align-items-center"><i class="ren-deposits d-flex align-items-center"></i>LAST<br>DEPOSITS</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item transaction-nav-item justify-content-center">
-                                    <a class="nav-link transaction-nav-link-responsive-lg" id="transaction-pills-withdrawal-tab" data-toggle="pill" href="#pills-withdrawals" role="tab" aria-controls="pills-withdrawal" aria-selected="false">
-                                        <span class="d-flex align-items-center"><i class="ren-investo d-flex align-items-center"></i>TOP<br>WITHDRAWALS</span>
-                                    </a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-            
-                    <div class="row ">
-                        <div class="col-lg-12">
-                            <div class="tab-content transaction-tab-content " id="transaction-pills-tabContent ">
-                                <div class="tab-pane fade show active transaction-tab-pane" id="pills-deposits" role="tabpanel" aria-labelledby="transaction-pills-deposits-tab">
-                                    <table class="table table-responsive-lg transaction-table table-striped  ">
-                                        <thead class="">
-                                        <tr>
-                                            <th scope="col">S/N</th>
-                                            <th scope="col">Name</th>
-                                           
-                                            <th scope="col">Amounts</th>
-                                            
-                                            <th scope="col">Method</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h5>1.</h5>
-                                            </th> 
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h4>Jim Adams</h4>
-                                            </th>
-                                            
-                                            
-                                            <td>$12000</td>
-                                            
-                                            <td><i class="ren-bitcoins">
-                                                <img src="image/paypal.png">
-                                            </i></td>
-                                        </tr>
-                                       
-                                        <tr class="bg-info">
-                                            <th scope="row" class="d-flex ">
-                                                
-                                                <h5>2.</h5>
-                                            </th> 
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h4>Edward Eneh</h4>
-                                            </th>
-                                            
-                                            
-                                            <td>$400</td>
-                                            
-                                            <td><i class="ren-bitcoins">
-                                                <img src="image/litecoin.png">
-                                            </i></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h5>3.</h5>
-                                            </th> 
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h4>Amaka Ozoh</h4>
-                                            </th>
-                                            
-                                            
-                                            <td>$50</td>
-                                            
-                                            <td><i class="ren-bitcoins">
-                                                <img src="image/paypal.png">
-                                            </i></td>
-                                        </tr>
-                                        <tr class="bg-info">
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h5>4.</h5>
-                                            </th> 
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h4>Favour Ola</h4>
-                                            </th>
-                                            
-                                            
-                                            <td>$200</td>
-                                            
-                                            <td><i class="ren-bitcoins">
-                                                <img src="image/ethereum.png">
-                                            </i></td>
-                                        </tr>
-                                        <tr >
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h5>5.</h5>
-                                            </th> 
-                                            <th scope="row" class="d-flex">
-                                                
-                                                <h4>Musa Anard</h4>
-                                            </th>
-                                            
-                                            
-                                            <td>$600</td>
-                                            
-                                            <td><i class="ren-bitcoins">
-                                                <img src="image/bitcoin.png">
-                                            </i></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-            
-                                <div class="tab-pane fade transaction-tab-pane" id="pills-withdrawals" role="tabpanel" aria-labelledby="transaction-pills-withdrawal-tab">
-                                    <table class="table table-responsive-lg  transaction-table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">S/N</th>
-                                                <th scope="col">Name</th>
-                                               
-                                                <th scope="col">Amounts</th>
-                                                
-                                                <th scope="col">Method</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>1.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Luke Shivam</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$84</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/paypal.png">
-                                                </i></td>
-                                            </tr>
-                                           
-                                            <tr class="bg-info">
-                                                <th scope="row" class="d-flex ">
-                                                    
-                                                    <h5>2.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Elijah Uche</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$800</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/ethereum.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>3.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Loveth Ogunobi</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$1000</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/paypal.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr class="bg-info">
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>4.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Joshua Sunday</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$300</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/bitcoin.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr >
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>5.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Soft  Lizy</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$200</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="{{asset('image/paypal.png')}}">
-                                                </i></td>
-                                            </tr>
-                                            </tbody>
-                                    </table>
-                                </div>
-            
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-            
-                            <div class="btn-area">
-                                <a class="start-now-btn global-btn" href="{{route('register')}}">Browse More</a>
-                            </div>
-            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- transaction section end --> --}}
+                <style>
+                    .custom{
+                        background-color: whitesmoke;
+                        color: black;
+                        border-radius: 10px;
+                    }
 
+                    .custom thead{
+                        background-color: black;
+                        color: white;;
+                    }
+
+                    .custom td,th{
+                        text-align: center;
+                    }
+
+                    .custom th{
+                        padding: 10px 0px;
+                    }
+
+                    ul#custom{
+                        display: flex!important;
+                        justify-content: center!important;
+                        align-items: center!important;
+                        margin: 20px;
+                    }
+
+                    ul#custom li{
+                        padding: 20px;
+                        background-color: white;
+                        border-radius: 20px;
+                    }
+
+                    ul#custom li{
+                        background-color: white;
+                        border-radius: 20px;
+                    }
+
+
+                    ul#custom a li.active {
+                        color: white!important;
+                        background-color: #fd961a;
+                        color: white!important;
+                    }
+
+
+                </style>            
+            
             <div class="container">
-                <ul class="nav nav-tabs ">
-                    <li class="active"><a data-toggle="tab" href="#withdraw">Withdrawals</a></li>
-                    <li><a data-toggle="tab" href="#deposit">Deposit</a></li>
+                <ul class="nav nav-tabs" id="custom">
+                    <a data-toggle="tab" href="#withdraw">
+                        <li class="active">Withdrawals</li>
+                    </a>
+
+                    <a data-toggle="tab" href="#deposit">
+                        <li>Deposits</li>
+                    </a>
+                
                 </ul>
-                <div class="tab-content">
+
+                <div class="tab-content custom rounded">
                     <div id="withdraw" class="tab-pane fade in active">
                         <div class="row ">
-                            <div class="col-lg-12">
-                                        <table class="table table-responsive-lg transaction-table table-striped  ">
+                            <div class="col-lg-12 p-lg-4">
+                                        <table class="table table-responsive-lg transaction-table ">
                                             <thead class="">
                                             <tr>
-                                                <th scope="col">S/N</th>
-                                                <th scope="col">Name</th>
-                                               
-                                                <th scope="col">Amounts</th>
-                                                
-                                                <th scope="col">Method</th>
+                                                <th>NAME</th>
+                                                <th>DATE</th>
+                                                <th>AMOUNT</th>
+                                                <th>CURRENCY</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>1.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Jim Adams</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$12000</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/paypal.png">
-                                                </i></td>
-                                            </tr>
-                                           
-                                            <tr class="bg-info">
-                                                <th scope="row" class="d-flex ">
-                                                    
-                                                    <h5>2.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Edward Eneh</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$400</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/litecoin.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>3.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Amaka Ozoh</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$50</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/paypal.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr class="bg-info">
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>4.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Favour Ola</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$200</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/ethereum.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr >
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>5.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Musa Anard</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$600</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/bitcoin.png">
-                                                </i></td>
-                                            </tr>
+                                                @if(count($info['withdrawals']))
+                                                @foreach($info['withdrawals'] as $transact)
+                                                    <tr class="bg-light p-lg-3">
+                                                        <td>
+                                                            {{$info['users'][$transact['ref']]['name']}}
+                                                        </td> 
+                                                        <td scope="row" class="d-flex">
+                                                            <h4>{{$transact['created_at']}}</h4>
+                                                        </td>
+                                                        
+                                                        
+                                                        <td>${{$transact['amount']}}</td>
+                                                        
+                                                        <td>{{strtoupper($transact['payment_channel'])}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                             </div>
@@ -365,101 +100,30 @@
                                         <table class="table table-responsive-lg transaction-table table-striped  ">
                                             <thead class="">
                                             <tr>
-                                                <th scope="col">S/N</th>
-                                                <th scope="col">Name</th>
-                                               
-                                                <th scope="col">Amounts</th>
-                                                
-                                                <th scope="col">Method</th>
+                                                <th>NAME</th>
+                                                <th>DATE</th>
+                                                <th>DEPOSITED AMOUNT</th>
+                                                <th>CURRENCY</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>1.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Jim Lakes</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$12000</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/paypal.png">
-                                                </i></td>
-                                            </tr>
-                                           
-                                            <tr class="bg-info">
-                                                <th scope="row" class="d-flex ">
-                                                    
-                                                    <h5>2.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Edward Jane</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$400</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/litecoin.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>3.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Amaka Zone</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$50</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/paypal.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr class="bg-info">
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>4.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Favour Ola</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$200</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/ethereum.png">
-                                                </i></td>
-                                            </tr>
-                                            <tr >
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h5>5.</h5>
-                                                </th> 
-                                                <th scope="row" class="d-flex">
-                                                    
-                                                    <h4>Musa Anard</h4>
-                                                </th>
-                                                
-                                                
-                                                <td>$600</td>
-                                                
-                                                <td><i class="ren-bitcoins">
-                                                    <img src="image/bitcoin.png">
-                                                </i></td>
-                                            </tr>
+                                                @if(count($info['deposits']))
+                                                @foreach($info['deposits'] as $transact)
+                                                    <tr class="bg-light p-lg-3">
+                                                        <td>
+                                                            {{$info['users'][$transact['ref']]['name']}}
+                                                        </td> 
+                                                        <td scope="row" class="d-flex">
+                                                            <h4>{{$transact['created_at']}}</h4>
+                                                        </td>
+                                                        
+                                                        
+                                                        <td>${{$transact['amount']}}</td>
+                                                        
+                                                        <td>{{strtoupper($transact['payment_channel'])}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                             </div>

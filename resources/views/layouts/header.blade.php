@@ -128,7 +128,7 @@
                     @if(Auth::check())
                     <div class="col-md-4 col-lg-4">
                         <ul class="unstyled user">
-                            <li class="sign-in"><a href="{{route(auth()->user()->role.".dashboard")}}" class="btn btn-primary"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+                            <li class=" text-center"><a href="{{route(auth()->user()->role.".dashboard")}}" class="btn btn-primary"><i class="fa fa-dashboard"></i>Dashboard</a></li>
                         </ul>
                     </div>
                     @else
@@ -142,6 +142,7 @@
                     <!-- User Sign In/Sign Up Ends -->
                 </div>
             </div>
+            
             
             <!-- Navigation Menu Starts -->
             <nav class="site-navigation navigation" id="site-navigation">

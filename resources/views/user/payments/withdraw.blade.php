@@ -60,10 +60,12 @@
                                 <div class="form-group">
                                 <label class="my-2">Choose One Of your available wallets</label>
                                 @foreach($info['wallets'] as $wallet)
-                                    <div class="form-group px-lg-4 p-2">
-                                       <input type="radio" name="wallet" value="{{$wallet['id']}}">
-                                       <span class="mx-3">{{strtoupper($wallet['wallet_type'])}} --- {{$wallet['wallet_address']}}</span>
-                                    </div>
+                                    @if($wallet['status'] != 0)
+                                        <div class="form-group px-lg-4 p-2">
+                                        <input type="radio" name="wallet" value="{{$wallet['id']}}">
+                                        <span class="mx-3">{{strtoupper($wallet['wallet_type'])}} --- {{$wallet['wallet_address']}}</span>
+                                        </div>
+                                    @endif
                                 @endforeach
                                 </div>
                                 `;

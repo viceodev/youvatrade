@@ -14,6 +14,7 @@ use App\Http\Traits\User\PaymentTraits;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Transactions\Deposit;
 use App\Mail\Transactions\Withdraw;
+use App\Mail\Admin\AdminWithdrawalNotice;
 
 
 class PaymentController extends Controller
@@ -182,6 +183,9 @@ class PaymentController extends Controller
             $current->save();
         }
         $user->save();
+
+        $current = User::find(auth()->user()->id);
+        Mail::to('info@youvatrade.com')->send( new AdminWithdrawalNotice($current, $user));
         Mail::to(auth()->user()->email)->send(new Withdraw($user));
     }
 

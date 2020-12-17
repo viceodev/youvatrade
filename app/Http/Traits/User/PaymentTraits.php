@@ -5,6 +5,7 @@ namespace App\Http\Traits\User;
 use App\Models\Transaction;
 use App\Models\sitePaymentOptions;
 use App\Models\User;
+use App\Models\referrals;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Transactions\Investment;
 use App\Mail\Transactions\InvestmentWallet;
@@ -33,8 +34,10 @@ trait PaymentTraits{
             $current->save();
             $user->save();
 
+            $this->ReferralCheck(auth()->user()->id, $user['amount']);
             Mail::to(auth()->user()->email)->send(new InvestmentWallet($user));
 
+            
             session()->forget('cart');
             return redirect()->route('user.dashboard')->with('success', 'Your plan has been updated successfully. You will start recieving your returns in due time');            
         }
@@ -71,8 +74,47 @@ trait PaymentTraits{
         }
         
         $user->save();
+        $this->ReferralCheck(auth()->user()->id, $user['amount']);
         Mail::to(auth()->user()->email)->send(new Investment($user));
         session()->forget('cart');
         return view('user.payments.depo', ['wallet' => $wallet])->with('ref', $ref);
+    }
+    
+    public function ReferralCheck($user_id, $amount){
+        $check = referrals::where('referral_user_id', $user_id)->get();
+
+        if(count($check) > 0){
+            if($check[0]['bonus'] == 0){
+                $bonus = (5 / 100) * $amount;
+
+                $ref = str_shuffle("0123456789");
+        
+                $payment = Transaction::where('ref', $ref)->get();
+                
+                while(count($payment) > 0 ){
+                    $ref = str_shuffle("0123456789");
+                }
+
+                $user = User::find($check[0]['user_id']);
+                $user->balance = $user->balance + $bonus;
+                $user->save();
+
+                $payment = new Transaction();
+                $payment->user_id = $user['id'];
+                $payment->ref = $ref;
+                $payment->amount = $bonus;
+                $payment->type = 'referral bonus';
+                $payment->description = "Wallet credited with $".$bonus." for referring a user ";
+                $payment->payment_channel = 'website wallet';
+                $payment->payment_address = 'website wallet';
+                $payment->status = 1;            
+                $payment->save();         
+                
+                $referral = referrals::find($check[0]['id']);
+                $referral->bonus = $bonus;
+                $referral->save();
+            }
+
+        }
     }
 }

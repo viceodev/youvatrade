@@ -65,7 +65,7 @@
 				<!-- Fact Badges Starts -->
 				<div class="row text-center facts-content">
 					<div class="text-center heading-facts">
-						<h2>Bayya<span> numbers</span></h2>
+						<h2>Youvatrade<span> numbers</span></h2>
 						<p>leading cryptocurrency exchange since day one of Bitcoin distribution</p>
 					</div>
 					<!-- Fact Badge Item Starts -->
@@ -95,7 +95,12 @@
 					<div class="col-xs-12 buttons">
 						<a class="btn btn-primary btn-pricing" href="{{route('pricing')}}">See pricing</a>
 						<span class="or"> or </span>
-						<a class="btn btn-primary btn-register" href="{{route('register')}}">Register Now</a>
+						@if(Auth::check())
+							<a class="btn btn-primary btn-register" href="{{route(auth()->user()->role.".dashboard")}}">Dashboard</a>
+						@else
+							<a class="btn btn-primary btn-register" href="{{route('register')}}">Register Now</a>
+						@endif
+							
 					</div>
 				</div>
 				<!-- Fact Badges Ends -->

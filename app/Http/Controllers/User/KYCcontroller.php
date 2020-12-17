@@ -25,6 +25,7 @@ class KYCcontroller extends Controller
     }
     
     public function show(){
+        $user_kyc = KYCModel::where('user_id', auth()->user()->id)->get();
         if(auth()->user()->status == 'verified' || auth()->user()->status == 'unverified'){
             return view('user.kycs.kyc_update', ['countries' => $this->countries])->with('kyc', $user_kyc[0]);
         }else{

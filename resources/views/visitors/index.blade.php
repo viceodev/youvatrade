@@ -263,7 +263,7 @@
                     </div>
                     <!-- Features Ends -->
                     <!-- Video Starts -->
-                    <div class="col-md-4 ts-padding bg-image-1" style="z-index: 20000; position:relative;">
+                    <div class="col-md-4 ts-padding bg-image-1" style="z-index: 2000000!important; position:relative!important;">
                         <div>
                             <div class="text-center">
                                 <a class="button-video mfp-youtube" href="https://www.youtube.com/watch?v=zSzOFG356c0"></a>

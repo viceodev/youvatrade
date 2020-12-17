@@ -79,14 +79,14 @@ class RegisterController extends Controller
                 $user->role = 'user';
                 $user->save();
 
-                // event(new Registered($user));
+                event(new Registered($user));
                 Auth::login($user);
 
                 if($request->referral != null){
                     $this->referral_bonus($request->referral, auth()->user()->id);
                 }
 
-                // Mail::to($user->email)->send(new Welcome($user));
+                Mail::to($user->email)->send(new Welcome($user));
 
 
                 return redirect()->intended(auth()->user()->role."/welcome");                

@@ -50,6 +50,7 @@ class AdminTransactionController extends Controller
         if($transaction['type'] == 'investment' && $transaction['payment_channel'] != 'website wallet'){
             $user = User::find($transaction['user_id']);
             $user->plan = $transaction['plan'];
+            $user->last_payed = strtotime('now');
             $user->save(); 
         }elseif($transaction['type'] == 'deposit'){
             $this->add($transaction['user_id'], $transaction['amount']);

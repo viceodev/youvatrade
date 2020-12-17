@@ -10,6 +10,9 @@ use App\Models\contact_form_submits;
 use App\Mail\Contact;
 use App\Mail\contact_user;
 use App\Models\Plans_meta;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Models\SiteDetails;
 
 class VisitorsController extends Controller
 {
@@ -42,7 +45,7 @@ class VisitorsController extends Controller
         $contact->save();
 
         
-        Mail::to('profviceo@gmail.com')->send(new Contact($contact));
+        Mail::to('info@youvatrade.com')->send(new Contact($contact));
         Mail::to($contact['email'])->send(new contact_user($contact));
 
         return back()->with('success', 'Your message has been sent successfully');
@@ -55,6 +58,15 @@ class VisitorsController extends Controller
         return $plans;
     }
 
+    public function contactUs(){
+        $infos = SiteDetails::all();
+
+        foreach($infos as $detail){
+            $info[$detail['field']] = $detail['value'];
+        }
+        return view('visitors.contact', ['info' => $info]);
+    }
+
     public function pricing(){
         $plan = $this->pricingDB();
         return view('visitors.pricing', ['plans' => $plan]);
@@ -62,6 +74,17 @@ class VisitorsController extends Controller
 
     public function index(){
         $plan = $this->pricingDB();
-        return view('visitors.index', ['plans' => $plan]);
+        $info['withdrawals'] = Transaction::where('type','withdrawal')->latest()->get()->take(10);
+        $info['deposits'] = Transaction::where('type', 'deposit')->latest()->get()->take(10);
+
+        foreach($info['withdrawals'] as $transact){
+            $info['users'][$transact['ref']] = User::find($transact['user_id']);
+        }
+
+        foreach($info['deposits'] as $transact){
+            $info['users'][$transact['ref']] = User::find($transact['user_id']);
+        }
+
+        return view('visitors.index', ['plans' => $plan])->with('info', $info);
     }
 }

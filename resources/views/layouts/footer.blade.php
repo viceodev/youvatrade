@@ -40,7 +40,6 @@
                                     <li><a href="{{route('about')}}">About</a></li>
                                     <li><a href="{{route('services')}}">Services</a></li>
                                     <li><a href="{{route('pricing')}}">Pricing</a></li>
-                                    <li><a href="blog-right-sidebar.html">Blog</a></li>
                                     <li><a href="{{route('contact')}}">Contact</a></li>
                                 </ul>
                             </div>
@@ -53,10 +52,8 @@
                                 <ul>
                                     <li><a href="{{route('faq')}}">FAQ</a></li>
                                     <li><a href="{{route('terms')}}">Terms of Services</a></li>
-                                    <li><a href="404.html">404</a></li>
                                     <li><a href="{{route('register')}}">Register</a></li>
                                     <li><a href="{{route('login')}}">Login</a></li>
-                                    <li><a href="coming-soon.html">Coming Soon</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -66,16 +63,13 @@
                             <h4>Contact Us </h4>
                             <div class="contacts">
                                 <div>
-                                    <span>contact@website.com</span>
+                                    <span>Info@youvatrade</span>
                                 </div>
                                 <div>
-                                    <span>00216 21 184 010</span>
+                                    <span>+14045948175</span>
                                 </div>
                                 <div>
                                     <span>London, England</span>
-                                </div>
-                                <div>
-                                    <span>mon-sat 08am &#x21FE; 05pm</span>
                                 </div>
                             </div>
 							<!-- Social Media Profiles Starts -->

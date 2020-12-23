@@ -41,7 +41,7 @@
                     <!-- Content Starts -->
                     <div class="col-sm-12 col-md-7 col-lg-6">
 						<div class="feature-about">
-							<h3 class="title-about">WE ARE YouvaTrade</h3>
+							<h3 class="title-about">WE ARE VictorTrade</h3>
 							<p>A place for everyone who wants to simply invest Cryptocurrency. Deposit funds using your Visa/MasterCard or Cryptocurrency. 
                                  Nothing extra. Join over 700,000 users from all over the world satisfied with our services.</p>
 						</div>
@@ -65,7 +65,7 @@
 				<!-- Fact Badges Starts -->
 				<div class="row text-center facts-content">
 					<div class="text-center heading-facts">
-						<h2>Youvatrade<span> numbers</span></h2>
+						<h2>VictorTrade<span> numbers</span></h2>
 						<p>leading cryptocurrency exchange since day one of Bitcoin distribution</p>
 					</div>
 					<!-- Fact Badge Item Starts -->

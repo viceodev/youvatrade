@@ -19,7 +19,7 @@
         <div class="row justify-content-center pt-5 pt-lg-1 ">
             <div class="col-lg-8 col-xl-7 text-center">
                 <h2 class="page-title text-uppercase">{{__('Fund Your Trading  account')}}</h2>
-                <p class="card lead text-info">{{__('After successful deposit, send us notification to deposits@youvatrade.com with your deposit details and amount. ')}}</p>
+                <p class="card lead text-info">{{__('After successful deposit, send us notification to deposits@victortrade.com with your deposit details and amount. ')}}</p>
             </div>
         </div>
     </div>

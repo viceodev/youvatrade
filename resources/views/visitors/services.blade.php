@@ -40,7 +40,7 @@
 						</span>
                         <div class="feature-box-content">
                             <h3>Be Safe and Secure</h3>
-                            <p>our assets are secured with a multi-tier & multi-cluster system architecture. And with our ‘Secure Assets Fund for Users’ guarantee, you can rest assured that your funds are secure with Youva Trade.</p>
+                            <p>our assets are secured with a multi-tier & multi-cluster system architecture. And with our ‘Secure Assets Fund for Users’ guarantee, you can rest assured that your funds are secure with VictorTrade.</p>
                         </div>
                     </div>
                     <!-- Feature Box Ends -->
@@ -51,7 +51,7 @@
 						</span>
                         <div class="feature-box-content">
                             <h3>Add coins to your Wallet</h3>
-                            <p>Youva Trade is designed to offer investors a simple way to access the crypto investment market, with our unrivalled experience in the sector of finance and investment.</p>
+                            <p>VictorTrade is designed to offer investors a simple way to access the crypto investment market, with our unrivalled experience in the sector of finance and investment.</p>
                         </div>
                     </div>
                     <!-- Feature Box Ends -->

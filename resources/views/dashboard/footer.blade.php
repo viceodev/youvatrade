@@ -1,6 +1,6 @@
 <footer class=" text-center"> 
     <p class="text-center text-danger">Your Referral Code: {{ "https://"."$_SERVER[HTTP_HOST]"."/auth/register/".auth()->user()->referral_code}}</p>
-    <p class="text-center"> © <?php echo getDate()['year'] ?> YouvaTrade All Right Reserved.</p>
+    <p class="text-center"> © <?php echo getDate()['year'] ?> VictorTrade All Right Reserved.</p>
 </footer>
 
 

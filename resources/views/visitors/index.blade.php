@@ -93,7 +93,7 @@
 						</span>
                         <div class="feature-box-content">
                             <h3>Be Safe and Secure</h3>
-                            <p>our assets are secured with a multi-tier & multi-cluster system architecture. And with our ‘Secure Assets Fund for Users’ guarantee, you can rest assured that your funds are secure with Youva Trade.</p>
+                            <p>our assets are secured with a multi-tier & multi-cluster system architecture. And with our ‘Secure Assets Fund for Users’ guarantee, you can rest assured that your funds are secure with VictorTrade.</p>
                         </div>
                     </div>
                     <!-- Feature Box Ends -->
@@ -104,7 +104,7 @@
 						</span>
                         <div class="feature-box-content">
                             <h3>Add coins to your Wallet</h3>
-                            <p>Youva Trade is designed to offer investors a simple way to access the crypto investment market, with our unrivalled experience in the sector of finance and investment.</p>
+                            <p>VictorTrade is designed to offer investors a simple way to access the crypto investment market, with our unrivalled experience in the sector of finance and investment.</p>
                         </div>
                     </div>
                     <!-- Feature Box Ends -->
@@ -146,8 +146,8 @@
                     <!-- Image Ends -->
                     <!-- Content Starts -->
                     <div class="col-sm-12 col-md-7 col-lg-6">
-                        <h3 class="title-about">WE ARE Youva Trade</h3>
-                        <p class="about-text">Youva Trade is a renowned international investment company which was incorporated on the 22 of July 2010, located at 150 Minories, Tower, London EC3N 1LS, United Kingdom, United Kingdom with Company Number: 17833900
+                        <h3 class="title-about">WE ARE VictorTrade</h3>
+                        <p class="about-text">VictorTrade is a renowned international investment company which was incorporated on the 22 of July 2010, located at 51, Calvary Road, Jarin Like road, Carlifornia  with Company Number: 17563910
 
                             With our digital investment platform, you invest and enjoy a very flexible ROI never offered elsewhere. We have differentiated strategy to create sustainable value for stakeholders. We actively trade and manage your investment with the aim to generate better-than-market returns.
                             

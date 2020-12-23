@@ -63,13 +63,13 @@
                             <h4>Contact Us </h4>
                             <div class="contacts">
                                 <div>
-                                    <span>Info@youvatrade</span>
+                                    <span>profviceo@gmail.com</span>
                                 </div>
                                 <div>
-                                    <span>+14045948175</span>
+                                    <span>+234(0)-8142077283</span>
                                 </div>
                                 <div>
-                                    <span>London, England</span>
+                                    <span>Jarin Lake, Carlifornia</span>
                                 </div>
                             </div>
 							<!-- Social Media Profiles Starts -->
@@ -129,7 +129,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- Copyright Text Starts -->
-                            <p class="text-center"><a href="/" target="_blank">&copy; 2020 YouvaTrade</a></p>
+                            <p class="text-center"><a href="/" target="_blank">&copy; 2020 VictorTrade</a></p>
                             <!-- Copyright Text Ends -->
                         </div>
                     </div>

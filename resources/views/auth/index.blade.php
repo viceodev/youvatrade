@@ -7,7 +7,6 @@
     <meta charset="utf-8" />
     <title>Auth Page- YouvaTrade Investments</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="//code.jivosite.com/widget/7CDRbLoqaE" async></script><!--jivo-->
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
@@ -84,7 +83,7 @@
 
 
 	<!-- Copyright Text Starts -->
-    <p class="text-center copyright-text"><a href="/">&copy; 2020 Youva Trade</a></p>
+    <p class="text-center copyright-text"><a href="/">&copy; 2020 VictorTrade</a></p>
     <!-- Copyright Text Ends -->
 </div>
 </div>

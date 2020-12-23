@@ -50,7 +50,7 @@
 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 <!-- Logo Starts -->
 <a class="visible-xs" href="/">
-    <img id="logo" class="img-responsive mobile-logo" src="images/logo.png" alt="logo">
+    <img id="logo" class="img-responsive mobile-logo" src="{{asset('images/logo.png')}}" alt="logo">
 </a>
 <!-- Logo Ends -->
 <div class="form-container">

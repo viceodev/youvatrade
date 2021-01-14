@@ -14,7 +14,7 @@ use App\Http\Controllers\User\SpecialController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDepositController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
-
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,18 +130,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function(){
     
 });
 
-Route::get('test', function(){
-    // $plan = new App\Models\Plans_meta();
-    // $plan->plan_name = "vip plan d";
-    // $plan->ROI = 50;
-    // $plan->initial_minimum_fee = 40000;
-    // $plan->initial_maximum_fee = 100000;
-    // $plan->time_rate = 43200;
-    // $plan->save();
+Route::view('test', "visitors.test");
+Route::get("/login/google", function(){
+    return Socialite::driver('google')->redirect();
+});
+Route::get("/login/google/callback", function(){
+    $user = Socialite::driver("google")->user();
 
-    // return $plan;
-    // return asset('./images/qr/custom qr.png');
-    return strtotime('yesterday');
+    // echo $user['name'];
+    print_r($user);
 });
 
 Route::get("mailable/admin", function(){

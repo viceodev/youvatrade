@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '305112953068-62aplah8rab7l0nhcd3kto8694ijadg5.apps.googleusercontent.com',
+        'client_secret' => 'BFUW3DafvBrtbulPG3PsWOGd',
+        'redirect' => 'http://youvatrade.net/login/google/callback',
+    ],
+
 ];

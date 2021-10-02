@@ -9,10 +9,6 @@
         border-color: #218838!important;
     }
 
-    /* .text-wrap{
-        white-space: normal;
-    } */
-
     .fa{
         font-weight: 400!important;
         font-size: 12px!important;

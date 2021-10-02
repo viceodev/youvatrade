@@ -114,8 +114,6 @@ class KYCcontroller extends Controller
 
 
         $txtFile = Storage::put('kycs/'.$folder."/info.txt", $fileContent);
-        // $txtFile = Storage::put('public/'.$folder."/info.txt", $fileContent);
-        $directory_seperator = "";
         $front_name = "front_".mt_rand(100,10000).".".$request->file('front_doc')->extension();
         $back_name = "back_".mt_rand(100,10000).".".$request->file('back_doc')->extension();
         $user_name = "user_".mt_rand(100,10000).".".$request->file('user_doc')->extension();
@@ -124,43 +122,14 @@ class KYCcontroller extends Controller
             "kycs/".$folder, $request->file('front_doc') , $front_name
         );
 
-        // $front = Storage::putFileAs(
-        //     "public/".$folder, $request->file('front_doc') , $front_name
-        // );
-
         $back = Storage::putFileAs(
             "kycs/".$folder, $request->file('back_doc') , $back_name
         );
 
-        // $back = Storage::putFileAs(
-        //     "public/".$folder, $request->file('back_doc') , $back_name
-        // );
-
         $user = Storage::putFileAs(
             "kycs/".$folder, $request->file('user_doc') , $user_name
         );
-        $this->store($request, $folder);
-
-        // $user = Storage::putFileAs(
-        //     "public/".$folder, $request->file('user_doc') , $user_name
-        // );
-
-        
-
-        // if(extension_loaded('zip')){
-        //     // $files = ['info.txt', $front_name, $back_name, $user_name];
-        //     $zip = new \ZipArchive();
-        //     $path = Storage::path("zip");
-        //     $zip_name = public_path()."/kyc_".mt_rand(1000000,10000000000).".zip";
-
-        //     if($zip->open($zip_name, ZIPARCHIVE::CREATE) === TRUE){
-        //         // foreach($files as $file){
-        //             // $zip->addFile(public_path()."/".$file); 
-        //             return $zip_name;
-        //         // }
-        //         $zip->close();
-        //     } 
-        // }    
+        $this->store($request, $folder);   
     }
 
     public function store($request, $folder){
@@ -272,6 +241,7 @@ class KYCcontroller extends Controller
             
             return back()->with('success', 'KYC Application updated successfully');
     }
+    
     public function updateUserKyc($request){
         $kyc = KYCModel::where('user_id', auth()->user()->id)->get()[0];
 

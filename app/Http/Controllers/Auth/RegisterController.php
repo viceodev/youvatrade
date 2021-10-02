@@ -55,8 +55,6 @@ class RegisterController extends Controller
             $current->referral = $user[0]->name;
             $current->save();
         }
-
-
     }
 
     public function register(Request $request){

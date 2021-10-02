@@ -49,7 +49,6 @@ class AdminController extends Controller
             }
         }
 
-        // return $info;
         return view('admin.dashboard', ['info' => $info]);
     }
 
